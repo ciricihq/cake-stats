@@ -1,0 +1,50 @@
+{
+    "name": "ciricihq/stats",
+    "description": "A CakePHP plugin for counting things",
+    "type": "project",
+    "keywords": [
+        "cakephp",
+        "plugin",
+        "skeleton"
+    ],
+    "homepage": "https://github.com/usemuffin/skeleton",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cirici New Media",
+            "homepage": "http://cirici.com"
+        },
+        {
+            "name": "Òscar Casajuana Alonso",
+            "email": "oscar@cirici.com",
+            "homepage": "http://racotecnic.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/ciricihq/cake-stats/issues",
+        "source": "https://github.com/ciricihq/cake-stats"
+    },
+    "require": {
+        "cakephp/cakephp": "~3.2.0"
+    },
+    "require-dev": {
+        "cakephp/cakephp-codesniffer": "^2.0",
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cirici\\Stats\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cirici\\Stats\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": [
+            "phpcs src",
+            "phpunit"
+        ]
+    }
+}
