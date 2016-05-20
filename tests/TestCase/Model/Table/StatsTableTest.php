@@ -1,6 +1,7 @@
 <?php
 namespace Stats\Test\TestCase\Model\Table;
 
+use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Stats\Model\Table\StatsTable;
