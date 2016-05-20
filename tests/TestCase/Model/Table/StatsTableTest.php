@@ -76,13 +76,34 @@ class StatsTableTest extends TestCase
         ];
 
         $stat = $this->Stats->newEntity($stat);
-
         $this->Stats->save($stat);
+
         $this->assertFalse(empty($stat->errors()));
     }
 
     public function testIncrease()
     {
         $result = $this->Stats->increase('Test', 23);
+
+        $this->assertTrue(empty($result->errors()));
+        $this->assertNotNull($result->stat_type_id);
+
+        $result2 = $this->Stats->increase('Test', 26);
+        $this->assertTrue(empty($result2->errors()));
+        $this->assertNotNull($result->stat_type_id);
+        $this->assertEquals($result2->stat_type_id, $result->stat_type_id);
+        $this->assertNotEquals($result2->id, $result->id);
+    }
+
+    public function testIncreaseGeneratesSingularModel()
+    {
+        Configure::write('Stats.singular_models', true);
+        $result = $this->Stats->increase('Test', 23);
+
+        $statType = $this->Stats->StatTypes
+            ->find()
+            ->where(['id' => $result->stat_type_id])
+            ->first()
+        ;
     }
 }

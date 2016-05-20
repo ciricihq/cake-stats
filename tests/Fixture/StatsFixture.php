@@ -17,7 +17,16 @@ class StatsFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'id' => ['type' => 'biginteger', 'length' => 20, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'id' => [
+            'type' => 'integer', // Cannot be biginteger due to an sqlite limitation
+            'length' => 20,
+            'unsigned' => true,
+            'null' => false,
+            'default' => null,
+            'comment' => '',
+            'autoIncrement' => true,
+            'precision' => null
+        ],
         'stat_type_id' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'foreign_key' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'other' => ['type' => 'text', 'length' => 16777215, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
