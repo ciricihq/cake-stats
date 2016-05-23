@@ -2,6 +2,8 @@
 namespace Cirici\Stats\Controller\Component;
 
 use Cake\Controller\Component;
+use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 class StatsComponent extends Component
 {
