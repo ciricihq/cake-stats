@@ -5,7 +5,13 @@ about it as a magic statistics plugin.
 
 ## Usage
 
-[TODO]
+For now, this plugin includes an `increase` and `decrease` methods on `StatsTable`
+that you can easily use with the `StatsComponent` (from controllers):
+
+~~~php
+$this->Stats->increase('Signup');
+~~~
+
 
 ## Patches & Features
 
