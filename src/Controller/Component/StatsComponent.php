@@ -25,13 +25,13 @@ class StatsComponent extends Component
      * Increases a stat for a determinated stat type.
      *
      * @param  string $name       The stat type name.
-     * @param  array  $other      An array of additional information (will be serialized).
      * @param  mixed  $foreignKey An optional foreign key to relate to a
      *                            specified content defined by $model.
+     * @param  array  $other      An array of additional information (will be serialized).
      * @param  string $model      The model name to which the $foreignKey is related.
      * @return bool
      */
-    public function increase($name, $other = [], $foreignKey = null, $model = null)
+    public function increase($name, $foreignKey = null, $other = [], $model = null)
     {
         if (empty($model)) {
             $model = $this->controller->modelClass;
