@@ -58,10 +58,10 @@ class StatsTable extends Table
      * Increases a stat for a determinated stat type.
      *
      * @param  string $name       The stat type name.
-     * @param  array  $other      An array of additional information (will be serialized).
+     * @param  string $model      The model name to which the $foreignKey is related.
      * @param  mixed  $foreignKey An optional foreign key to relate to a
      *                            specified content defined by $model.
-     * @param  string $model      The model name to which the $foreignKey is related.
+     * @param  array  $other      An array of additional information (will be serialized).
      * @return bool
      */
     public function increase($name, $model, $foreignKey, $other = [])

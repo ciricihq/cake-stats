@@ -114,8 +114,7 @@ class StatsTableTest extends TestCase
         $statType = $this->Stats->StatTypes
             ->find()
             ->where(['id' => $result->stat_type_id])
-            ->first()
-        ;
+            ->first();
 
         $this->assertEquals('Post', $statType->model);
     }
