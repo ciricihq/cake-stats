@@ -20,7 +20,7 @@ class StatsComponent extends Component
     public function startup(Event $event)
     {
         $this->controller = $event->subject();
-        $this->Stats = TableRegistry::get('Stats');
+        $this->Stats = TableRegistry::get('Cirici/Stats.Stats');
     }
 
     /**
@@ -52,32 +52,5 @@ class StatsComponent extends Component
     public function decrease($name, $foreignKey = null)
     {
         return $this->Stats->decrease($name, $foreignKey);
-    }
-
-    /**
-     * Returns the stat type with the specified name and model.
-     *
-     * In case the stat type does not exist it creates it.
-     *
-     * @param  string $name  The stat type to be decreased.
-     * @param  mixed  $model The model of the stat type.
-     * @return bool
-     */
-    protected function statType($name, $model = null)
-    {
-        if (empty($model)) {
-            $model = $this->controller->modelClass;
-        }
-
-        $statType = $this->Stats->StatTypes->find()
-            ->where(compact('name', 'model'))
-            ->first();
-
-        if (empty($statType)) {
-            $statType = $this->Stats->StatTypes->newEntity(compact('name', 'model'));
-            $this->Stats->StatTypes->save($statType);
-        }
-
-        return $statType;
     }
 }
