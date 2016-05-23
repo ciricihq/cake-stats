@@ -70,4 +70,4 @@ ConnectionManager::config('test', [
     'quoteIdentifiers' => true
 ]);
 
-Plugin::load('Stats', ['path' => dirname(dirname(__FILE__)) . DS]);
+Plugin::load('Cirici/Stats', ['path' => dirname(dirname(__FILE__)) . DS]);

@@ -1,5 +1,5 @@
 <?php
-namespace Stats\Model\Entity;
+namespace Cirici\Stats\Model\Entity;
 
 use Cake\ORM\Entity;
 

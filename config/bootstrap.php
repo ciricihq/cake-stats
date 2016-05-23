@@ -8,3 +8,7 @@ use Cake\Core\Configure;
 Configure::write('Stats', [
     'singular_models' => false
 ]);
+
+if (file_exists(CONFIG . 'stats.php')) {
+    Configure::load('stats');
+}

@@ -1,5 +1,5 @@
 <?php
-namespace Stats\Model\Table;
+namespace Cirici\Stats\Model\Table;
 
 use Cake\Core\Configure;
 use Cake\ORM\Query;
@@ -64,7 +64,7 @@ class StatsTable extends Table
      * @param  string $model      The model name to which the $foreignKey is related.
      * @return bool
      */
-    public function increase($name, $foreignKey, $other = [], $model = null)
+    public function increase($name, $model, $foreignKey, $other = [])
     {
         $statType = $this->statType($name, $model);
 
@@ -79,8 +79,6 @@ class StatsTable extends Table
 
         $stat = $this->newEntity($stat);
 
-        debug($stat);
-
         return $this->save($stat);
     }
 
@@ -93,8 +91,15 @@ class StatsTable extends Table
      */
     public function decrease($name, $foreignKey = null)
     {
+        $stat = $this->find()->matching('StatTypes', function ($q) use ($name) {
+            return $q->where(['StatTypes.name' => $name]);
+        })->order(['Stats.created' => 'DESC']);
 
-        return true;
+        if (!empty($foreignKey)) {
+            $stat = $stat->where(['foreign_key' => $foreignKey])->first();
+        }
+
+        return $this->delete($stat);
     }
 
     /**
@@ -106,14 +111,10 @@ class StatsTable extends Table
      * @param  mixed  $model The model of the stat type.
      * @return bool
      */
-    protected function statType($name, $model = null)
+    protected function statType($name, $model)
     {
-        if (empty($model)) {
-            $model = $this->alias();
-
-            if (Configure::read('Stats.singular_models')) {
-                $model = Inflector::singularize($model);
-            }
+        if (Configure::read('Stats.singular_models')) {
+            $model = Inflector::singularize($model);
         }
 
         $statType = $this->StatTypes->find()

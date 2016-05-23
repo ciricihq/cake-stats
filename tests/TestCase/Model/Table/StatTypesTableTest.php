@@ -1,5 +1,5 @@
 <?php
-namespace Stats\Test\TestCase\Model\Table;
+namespace Cirici\Stats\Test\TestCase\Model\Table;
 
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
@@ -24,8 +24,8 @@ class StatTypesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'plugin.stats.stat_types',
-        'plugin.stats.stats'
+        'plugin.cirici/stats.stat_types',
+        'plugin.cirici/stats.stats'
     ];
 
     /**
@@ -36,7 +36,7 @@ class StatTypesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('StatTypes') ? [] : ['className' => 'Stats\Model\Table\StatTypesTable'];
+        $config = TableRegistry::exists('StatTypes') ? [] : ['className' => 'Cirici\Stats\Model\Table\StatTypesTable'];
         $this->StatTypes = TableRegistry::get('StatTypes', $config);
     }
 
@@ -59,16 +59,7 @@ class StatTypesTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test validationDefault method
-     *
-     * @return void
-     */
-    public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertInstanceOf('\Cake\ORM\Association\HasMany', $this->StatTypes->Stats);
+        $this->assertTrue($this->StatTypes->hasBehavior('Timestamp'));
     }
 }

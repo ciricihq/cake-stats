@@ -1,5 +1,5 @@
 <?php
-namespace Stats\Test\TestCase\Model\Table;
+namespace Cirici\Stats\Test\TestCase\Model\Table;
 
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
@@ -25,8 +25,8 @@ class StatsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'plugin.stats.stats',
-        'plugin.stats.stat_types'
+        'plugin.cirici/stats.stats',
+        'plugin.cirici/stats.stat_types'
     ];
 
     /**
@@ -37,7 +37,7 @@ class StatsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Stats') ? [] : ['className' => 'Stats\Model\Table\StatsTable'];
+        $config = TableRegistry::exists('Stats') ? [] : ['className' => 'Cirici\Stats\Model\Table\StatsTable'];
         $this->Stats = TableRegistry::get('Stats', $config);
     }
 
@@ -82,29 +82,63 @@ class StatsTableTest extends TestCase
         $this->assertFalse(empty($stat->errors()));
     }
 
+    /**
+     * Test increase method.
+     *
+     * @return void
+     */
     public function testIncrease()
     {
-        $result = $this->Stats->increase('Test', 23);
+        $result = $this->Stats->increase('Test', 'Posts', 23);
 
         $this->assertTrue(empty($result->errors()));
         $this->assertNotNull($result->stat_type_id);
 
-        $result2 = $this->Stats->increase('Test', 26);
+        $result2 = $this->Stats->increase('Test', 'Posts', 26);
         $this->assertTrue(empty($result2->errors()));
         $this->assertNotNull($result->stat_type_id);
         $this->assertEquals($result2->stat_type_id, $result->stat_type_id);
         $this->assertNotEquals($result2->id, $result->id);
     }
 
+    /**
+     * Test increase uses singular models when configured.
+     *
+     * @return void
+     */
     public function testIncreaseGeneratesSingularModel()
     {
         Configure::write('Stats.singular_models', true);
-        $result = $this->Stats->increase('Test', 23);
+        $result = $this->Stats->increase('Test', 'Posts', 23);
 
         $statType = $this->Stats->StatTypes
             ->find()
             ->where(['id' => $result->stat_type_id])
             ->first()
         ;
+
+        $this->assertEquals('Post', $statType->model);
+    }
+
+    /**
+     * Test decrease method.
+     *
+     * @depends testIncrease
+     * @return void
+     */
+    public function testDecrease()
+    {
+        $this->Stats->increase('Test', 'Posts', 23);
+
+        $this->assertEquals(2, count($this->Stats->find()->toArray()));
+
+        $this->Stats->decrease('Test', 23);
+
+        $stat = $this->Stats->find()->matching('StatTypes', function ($q) {
+            return $q->where(['StatTypes.name' => 'Test']);
+        })->where(['foreign_key' => 23])->first();
+
+        $this->assertNull($stat);
+        $this->assertEquals(1, count($this->Stats->find()->toArray()));
     }
 }

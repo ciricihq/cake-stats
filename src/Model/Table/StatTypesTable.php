@@ -1,5 +1,5 @@
 <?php
-namespace Stats\Model\Table;
+namespace Cirici\Stats\Model\Table;
 
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;

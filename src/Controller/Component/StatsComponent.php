@@ -33,18 +33,11 @@ class StatsComponent extends Component
      */
     public function increase($name, $other = [], $foreignKey = null, $model = null)
     {
-        $statType = $this->statType($name, $model);
-
-        $stat = [
-            'stat_type_id' => $statType->id,
-            'foreign_key' => $foreignKey
-        ];
-
-        if (!empty($other)) {
-            $stat['other'] = json_encode($other);
+        if (empty($model)) {
+            $model = $this->controller->modelClass;
         }
 
-        return true;
+        return $this->Stats->increase($name, $model, $foreignKey, $other);
     }
 
     /**
@@ -56,8 +49,7 @@ class StatsComponent extends Component
      */
     public function decrease($name, $foreignKey = null)
     {
-
-        return true;
+        return $this->Stats->decrease($name, $foreignKey);
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-namespace Stats\Test\Fixture;
+namespace Cirici\Stats\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
