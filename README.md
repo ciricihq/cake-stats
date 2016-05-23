@@ -20,14 +20,15 @@ To ensure your PRs are considered for upstream, you MUST follow the [CakePHP cod
 
 ## Bugs & Feedback
 
-[TODO]
+See the [github issues][issues].
 
 ## License
 
 Copyright (c) 2016, [Cirici New Media][cirici] and licensed under [GPL v3][gpl].
 
-[cakephp]:http://cakephp.org
-[composer]:http://getcomposer.org
-[gpl]:http://www.gnu.org/licenses/gpl-3.0.html
-[cirici]:http://www.cirici.com
-[standards]:http://book.cakephp.org/3.0/en/contributing/cakephp-coding-conventions.html
+[cakephp]: http://cakephp.org
+[composer]: http://getcomposer.org
+[issues]: https://github.com/ciricihq/cake-stats/issues
+[gpl]: http://www.gnu.org/licenses/gpl-3.0.html
+[cirici]: http://www.cirici.com
+[standards]: http://book.cakephp.org/3.0/en/contributing/cakephp-coding-conventions.html
