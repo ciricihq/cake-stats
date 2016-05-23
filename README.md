@@ -1,5 +1,10 @@
 # Stats plugin for CakePHP3
 
+[![Build Status](https://img.shields.io/travis/ciricihq/cake-stats/master.svg?style=flat-square)](https://travis-ci.org/ciricihq/cake-stats)
+[![Coverage](https://img.shields.io/coveralls/ciricihq/cake-stats.svg?style=flat-square)](https://coveralls.io/github/ciricihq/cake-stats)
+[![Total Downloads](https://img.shields.io/packagist/dt/ciricihq/stats.svg?style=flat-square)](https://packagist.org/packages/ciricihq/stats)
+[![License](https://img.shields.io/github/license/ciricihq/cake-stats.svg?style=flat-square)](LICENSE.md)
+
 Simple plugin to count things. Just increases/decreases a counter, don't think
 about it as a magic statistics plugin.
 
