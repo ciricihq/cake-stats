@@ -26,7 +26,7 @@
         "source": "https://github.com/ciricihq/cake-stats"
     },
     "require": {
-        "cakephp/cakephp": ">3.2.0"
+        "cakephp/cakephp": ">=3.2.0"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^2.0",
